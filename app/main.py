@@ -1,17 +1,8 @@
 from fastapi import FastAPI, HTTPException, status
 from database import get_connection
 from queries import *
+from models import *
 from typing import List
-from pydantic import BaseModel
-
-
-class Error(BaseModel):
-    detail: str
-
-
-class Event(BaseModel):
-    id: int
-    name: str
 
 
 app = FastAPI(
@@ -33,9 +24,7 @@ app = FastAPI(
     }
 )
 async def get_all_events():
-    """
-    Получение всех событий из базы данных.
-    """
+    # Получение всех событий из базы данных.
     try:
         conn = await get_connection()
         events = await conn.fetch(GET_ALL_EVENTS)
