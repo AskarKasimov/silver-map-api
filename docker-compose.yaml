@@ -1,0 +1,32 @@
+version: "3.8"
+
+networks:
+  silver_map_network:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:17.2-alpine
+    container_name: postgres_container
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data # том для данных
+      - ./db_init_scripts:/docker-entrypoint-initdb.d # скрипты инициализации БД
+    networks:
+      - silver_map_network
+
+  api:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: silver_backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - silver_map_network
