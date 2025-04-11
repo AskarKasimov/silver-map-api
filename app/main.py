@@ -1,14 +1,22 @@
 from fastapi import FastAPI, HTTPException, status
-from database import get_connection
-from queries import *
+from contextlib import asynccontextmanager
+from database import DatabaseData
 from models import *
 from typing import List
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await DatabaseData().connect()
+    yield
+    await DatabaseData().close()
 
 
 app = FastAPI(
     title="Silvermap API",
     description="Основной сервис бэкэнда исторического проекта ИТМО",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 
@@ -25,14 +33,10 @@ app = FastAPI(
 )
 async def get_all_events():
     # Получение всех событий из базы данных.
-    try:
-        conn = await get_connection()
-        events = await conn.fetch(GET_ALL_EVENTS)
-        if len(events) == 0:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="No events found"
-            )
-        return events
-    finally:
-        await conn.close()
+    events = await DatabaseData().get_all_events()
+    if len(events) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No events found"
+        )
+    return events
