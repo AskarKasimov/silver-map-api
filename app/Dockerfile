@@ -10,4 +10,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 COPY . .
 EXPOSE 8000
-ENTRYPOINT ["uvicorn", "main:app", "--no-server-header", "--no-access-log", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["uvicorn", "main:app", "--no-server-header", "--host", "0.0.0.0", "--port", "8000"]
