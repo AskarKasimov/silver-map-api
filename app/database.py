@@ -33,5 +33,4 @@ class DatabaseData:
             await self._conn.close()
 
     async def get_all_events(self):
-        await self.connect()
         return await self._conn.fetch("SELECT id, name FROM event;")
