@@ -42,17 +42,9 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Login to GHCR
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u askarkasimov --password-stdin
-
-      - name: Pull images
-        run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker pull postgres:17.2-alpine
 
       - name: Deploy
         run: |
