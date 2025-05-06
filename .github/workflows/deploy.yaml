@@ -49,10 +49,14 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u askarkasimov --password-stdin
 
-      - name: Pull and deploy
+      - name: Pull images
         run: |
-          docker compose -f docker-compose.deploy.yaml stop
-          docker compose -f docker-compose.deploy.yaml rm -f -v
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker pull postgres:17.2-alpine
+
+      - name: Deploy
+        run: |
+          docker compose -f docker-compose.deploy.yaml down
           docker compose -f docker-compose.deploy.yaml up -d
         env:
           PG_USER: ${{ secrets.PG_USER }}
