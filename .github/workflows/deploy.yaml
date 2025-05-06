@@ -27,8 +27,10 @@ jobs:
           driver: docker-container
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v4
         with:
+          context: ./app
+          file: ./app/Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
