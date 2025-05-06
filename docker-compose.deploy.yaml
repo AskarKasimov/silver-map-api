@@ -5,7 +5,7 @@ networks:
 services:
   postgres:
     image: postgres:17.2-alpine
-    container_name: postgres_prod
+    container_name: postgres
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
@@ -14,6 +14,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db_init_scripts:/docker-entrypoint-initdb.d
     networks:
       - silver_map_network
     healthcheck:
@@ -26,11 +27,11 @@ services:
     image: ghcr.io/askarkasimov/silver-map-api:latest
     container_name: silver_backend_prod
     environment:
-      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres_prod:5432/${PG_DB}
+      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}
     ports:
       - "8000:8000"
     depends_on:
-      postgres_prod:
+      postgres:
         condition: service_healthy
     restart: unless-stopped
     networks:
