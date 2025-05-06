@@ -43,11 +43,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-
-      - name: Deploy to production
-        run: |
-          docker compose -f docker-compose.yaml -f docker-compose.deploy.yaml pull
-          TAG=${{ github.sha }} docker compose -f docker-compose.yaml -f docker-compose.deploy.yaml up -d
+      - name: Deploy
+        run: docker compose -f docker-compose.deploy.yaml up -d
         env:
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
