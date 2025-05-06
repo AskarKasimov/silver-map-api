@@ -28,11 +28,11 @@ services:
     image: ghcr.io/askarkasimov/silver-map-api:latest
     container_name: silver_backend_prod
     environment:
-      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}
+      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres_prod:5432/${PG_DB}
     ports:
       - "8000:8000"
     depends_on:
-      postgres:
+      postgres_prod:
         condition: service_healthy
     restart: unless-stopped
     networks:
