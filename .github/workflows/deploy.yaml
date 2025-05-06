@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner | lower }}/silver-map-api
+  IMAGE_NAME: askarkasimov/silver-map-api
 
 jobs:
   build:
