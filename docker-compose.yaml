@@ -1,5 +1,3 @@
-version: "3.8"
-
 networks:
   silver_map_network:
     driver: bridge
