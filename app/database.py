@@ -2,11 +2,7 @@ import os
 import asyncpg
 
 
-DB_USER = os.getenv("PG_USER")
-DB_PASSWORD = os.getenv("PG_PASSWORD")
-DB_HOST = os.getenv("PG_HOST", "localhost")
-DB_PORT = os.getenv("PG_PORT", "5432")
-DB_NAME = os.getenv("PG_DB")
+DB_URL = os.getenv("DATABASE_URL")
 
 
 class DatabaseData:
@@ -20,13 +16,7 @@ class DatabaseData:
 
     async def connect(self):
         if not self._conn or self._conn.is_closed():
-            self._conn = await asyncpg.connect(
-                user=DB_USER,
-                password=DB_PASSWORD,
-                host=DB_HOST,
-                port=DB_PORT,
-                database=DB_NAME
-            )
+            self._conn = await asyncpg.connect(DB_URL)
 
     async def close(self):
         if self._conn and not self._conn.is_closed():
