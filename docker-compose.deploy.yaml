@@ -26,7 +26,7 @@ services:
     container_name: silver_backend_prod
     environment:
       - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}
-      - ENVIRONMENT=production
+      - APP_MODE=production
     ports:
       - "127.0.0.1:8000:8000"
     depends_on:
