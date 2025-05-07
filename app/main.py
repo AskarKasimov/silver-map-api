@@ -13,24 +13,16 @@ async def lifespan(app: FastAPI):
     await DatabaseData().close()
 
 
-APP_MODE = os.environ.get("APP_MODE", "production")
-if APP_MODE == "production":
-    docs_url = None
-    redoc_url = None
-    openapi_url = None
-else:
-    docs_url = "/docs"
-    redoc_url = "/redoc"
-    openapi_url = "/openapi.json"
+is_prod = os.environ.get("APP_MODE", "production") == "production"
 
 app = FastAPI(
     title="Silvermap API",
     description="Основной сервис бэкэнда исторического проекта ИТМО",
     version="1.0.0",
     lifespan=lifespan,
-    docs_url=docs_url,
-    redoc_url=redoc_url,
-    openapi_url=openapi_url
+    docs_url=None if is_prod else "/docs",
+    redoc_url=None if is_prod else "/redoc",
+    openapi_url=None if is_prod else "/openapi.json",
 )
 
 
