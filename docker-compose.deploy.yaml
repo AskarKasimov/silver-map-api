@@ -12,14 +12,24 @@ services:
       POSTGRES_DB: ${PG_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db_init_scripts:/docker-entrypoint-initdb.d
     networks:
       - silver_map_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
+
+  flyway:
+    image: flyway/flyway:11.8.1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: -url=jdbc:postgresql://postgres:5432/${PG_DB} -user=${PG_USER} -password=${PG_PASSWORD} -connectRetries=60 -baselineOnMigrate=true migrate
+    volumes:
+      - ./db_init_scripts:/flyway/sql
+    networks:
+      - silver_map_network
 
   api:
     image: ghcr.io/askarkasimov/silver-map-api:latest

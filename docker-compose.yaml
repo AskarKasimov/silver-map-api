@@ -5,7 +5,7 @@ networks:
 services:
   postgres:
     image: postgres:17.2-alpine
-    container_name: postgres_container
+    container_name: postgres
     env_file: .env
     environment:
       POSTGRES_USER: ${PG_USER}
@@ -14,8 +14,24 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data # том для данных
-      - ./db_init_scripts:/docker-entrypoint-initdb.d # скрипты инициализации БД
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - silver_map_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  flyway:
+    image: flyway/flyway:11.8.1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: -url=jdbc:postgresql://postgres:5432/${PG_DB} -user=${PG_USER} -password=${PG_PASSWORD} -connectRetries=60 -baselineOnMigrate=true migrate
+    volumes:
+      - ./db_init_scripts:/flyway/sql
+    env_file: .env
     networks:
       - silver_map_network
 
@@ -25,10 +41,14 @@ services:
       dockerfile: Dockerfile
     container_name: silver_backend
     env_file: .env
+    environment:
+      - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}
+      - APP_MOD=production
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - silver_map_network
