@@ -49,10 +49,15 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u askarkasimov --password-stdin
 
+      - name: Pull latest image
+        run: |
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
       - name: Deploy
         run: |
           docker compose -f docker-compose.deploy.yaml down
-          docker compose -f docker-compose.deploy.yaml up -d
+          docker compose -f docker-compose.deploy.yaml up -d --force-recreate
+          docker image prune -f
         env:
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
