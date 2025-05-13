@@ -27,7 +27,7 @@ app = FastAPI(
 
 
 @app.get(
-    "/event",
+    "/events",
     response_model=List[Event],
     tags=["events"],
     summary="Все события",
