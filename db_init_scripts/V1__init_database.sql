@@ -3,8 +3,8 @@ CREATE TABLE
         id SERIAL PRIMARY KEY,
         name TEXT,
         bio TEXT,
-        time_birth INTEGER,
-        time_death INTEGER
+        time_birth DATE,
+        time_death DATE
     );
 
 CREATE TABLE
