@@ -94,6 +94,46 @@ async def get_events(
 
     return events
 
+
+@app.get(
+    "/works",
+    tags=["works"],
+    summary="Все произведения",
+    responses={
+        200: {"description": "Список событий", "model": List[Work]},
+        404: {"description": "События не найдены", "model": Error},
+        500: {"description": "Ошибка сервера", "model": Error}
+    }
+)
+async def get_all_works():
+    works = await DatabaseData().get_all_works()
+    if not works:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No works found"
+        )
+    return works
+
+
+@app.get(
+    "/events/{event_id}/works",
+    tags=["events"],
+    summary="Произведения по событию",
+    responses={
+        200: {"description": "Список событий", "model": List[Work]},
+        404: {"description": "События не найдены", "model": Error},
+        500: {"description": "Ошибка сервера", "model": Error}
+    }
+)
+async def get_works_by_event_id(event_id: int):
+    works = await DatabaseData().get_works_by_event_id(event_id)
+    if not works:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"No works found for event_id {event_id}"
+        )
+    return works
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=3001)

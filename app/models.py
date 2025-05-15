@@ -24,3 +24,11 @@ class Event(BaseModel):
     time_start: int
     time_end: int
     poet_id: int
+
+
+class Work(BaseModel):
+    id: int
+    name: str
+    description: str
+    link: str
+    poet_id: int

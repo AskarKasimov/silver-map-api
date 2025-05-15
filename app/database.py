@@ -30,3 +30,9 @@ class DatabaseData:
 
     async def get_events_by_poet_id(self, poet_id: int):
         return await self._conn.fetch("SELECT * FROM event WHERE poet_id = $1;", poet_id)
+
+    async def get_all_works(self):
+        return await self._conn.fetch("SELECT * FROM work;")
+
+    async def get_works_by_event_id(self, event_id: int):
+        return await self._conn.fetch("SELECT * FROM work JOIN work_event ON work_event.work_id=work.id WHERE event_id = $1;", event_id)
