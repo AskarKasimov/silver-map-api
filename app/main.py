@@ -29,15 +29,15 @@ app = FastAPI(
 if is_prod:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Разрешает все origins
+        allow_origins=["https://silvermap.askar.su"],
         allow_credentials=True,
-        allow_methods=["*"],  # Разрешает все методы
-        allow_headers=["*"],  # Разрешает все заголовки
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
 else:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["https://silvermap.askar.su"],
+        allow_origins=["http://localhost:5173"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
