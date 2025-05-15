@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from database import DatabaseData
 from models import *
 from typing import List, Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -24,6 +25,23 @@ app = FastAPI(
     redoc_url=None if is_prod else "/redoc",
     openapi_url=None if is_prod else "/openapi.json",
 )
+
+if is_prod:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],  # Разрешает все origins
+        allow_credentials=True,
+        allow_methods=["*"],  # Разрешает все методы
+        allow_headers=["*"],  # Разрешает все заголовки
+    )
+else:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["https://silvermap.askar.su"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 @app.get(
