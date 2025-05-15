@@ -538,16 +538,50 @@ VALUES
         )
     );
 
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'На руке его много блестящих колец...'),
---     (SELECT id FROM event WHERE name = 'Детство в Царском Селе')
--- );
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'Вечер'),
---     (SELECT id FROM event WHERE name = 'Венчание с Николаем Гумилевым')
--- );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'На руке его много блестящих колец...'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Царское Село'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Вечер'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Церковь села Никольская Слободка'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -828,10 +862,6 @@ VALUES
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
-    -- (
-    --     (SELECT id FROM work WHERE name = 'Под северным небом'),
-    --     (SELECT id FROM event WHERE name = 'Первый литературный дебют')
-    -- ),
     (
         (
             SELECT
@@ -1270,11 +1300,28 @@ VALUES
         )
     );
 
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'Серебряный голубь'),
---     (SELECT id FROM event WHERE name = 'Петербургский период (Дом Мурузи)')
--- );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Серебряный голубь'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Дом Мурузи'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -1297,11 +1344,28 @@ VALUES
         )
     );
 
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'Москва'),
---     (SELECT id FROM event WHERE name = 'Берлинская эмиграция')
--- );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Москва'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Берлин'
+        )
+    );
+
 INSERT INTO
     poet (name, bio, time_birth, time_death)
 VALUES
@@ -1533,7 +1597,7 @@ INSERT INTO
     work (name, description, link, poet_id)
 VALUES
     (
-        'Письма с военной службы',
+        'Письма',
         'Письма матери с описанием быта на службе в Белоруссии в 1916 году.',
         'http://blok.lit-info.ru/blok/letter/index.htm',
         (
@@ -1546,11 +1610,6 @@ VALUES
         )
     );
 
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'Записи о Франции'),
---     (SELECT id FROM event WHERE name = 'Путешествие по Западной Европе')
--- );
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -1561,7 +1620,7 @@ VALUES
             FROM
                 work
             WHERE
-                name = 'Письма с военной службы'
+                name = 'Письма'
         ),
         (
             SELECT
@@ -1976,11 +2035,28 @@ VALUES
         )
     );
 
--- INSERT INTO work_event (work_id, event_id)
--- VALUES (
---     (SELECT id FROM work WHERE name = 'Дни Турбиных'),
---     (SELECT id FROM event WHERE name = 'Работа во МХАТе')
--- );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Дни Турбиных'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'МХАТ'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -2347,24 +2423,6 @@ VALUES
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
-    -- (
-    --     (
-    --         SELECT
-    --             id
-    --         FROM
-    --             work
-    --         WHERE
-    --             name = 'Макар Чудра'
-    --     ),
-    --     (
-    --         SELECT
-    --             id
-    --         FROM
-    --             event
-    --         WHERE
-    --             name = 'Литературный дебют: "Макар Чудра"'
-    --     )
-    -- ),
     (
         (
             SELECT
@@ -2875,48 +2933,50 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Я в лес бежал из городов'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Годы в Тифлисе'
---         )
---     );
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Жираф'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Первое африканское путешествие'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Я в лес бежал из городов'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Тифлис'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Жираф'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Африка'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -3397,27 +3457,28 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Радуница'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Детство в Константиново'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Радуница'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Константиново'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -3462,27 +3523,28 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Отговорила роща золотая'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Детство в Константиново'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Отговорила роща золотая'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Константиново'
+        )
+    );
+
 INSERT INTO
     poet (name, bio, time_birth, time_death)
 VALUES
@@ -4117,7 +4179,7 @@ INSERT INTO
     )
 VALUES
     (
-        'Дом Мурузи',
+        'Дом Муру зи',
         59.936944,
         30.344722,
         'https://static.askar.su/19.jpg',
@@ -4331,48 +4393,50 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Камень'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Дом Мурузи'
---         )
---     );
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Воронежские тетради'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Воронежская ссылка'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Камень'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Дом Муру зи'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Воронежские тетради'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Воронеж'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -4823,27 +4887,28 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Первые стихи (1909)'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Заключение в Бутырской тюрьме'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Первые стихи (1909)'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Бутырская тюрьма'
+        )
+    );
+
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
@@ -4888,27 +4953,28 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Моё открытие Америки'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Поездка в Америку'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Моё открытие Америки'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'США'
+        )
+    );
+
 INSERT INTO
     poet (name, bio, time_birth, time_death)
 VALUES
@@ -5247,24 +5313,6 @@ VALUES
 INSERT INTO
     work_event (work_id, event_id)
 VALUES
-    -- (
-    --     (
-    --         SELECT
-    --             id
-    --         FROM
-    --             work
-    --         WHERE
-    --             name = 'Близнец в тучах'
-    --     ),
-    --     (
-    --         SELECT
-    --             id
-    --         FROM
-    --             event
-    --         WHERE
-    --             name = 'Литературный дебют: "Близнец в тучах"'
-    --     )
-    -- ),
     (
         (
             SELECT
@@ -5432,7 +5480,7 @@ INSERT INTO
     )
 VALUES
     (
-        'Никольское',
+        'Никольское ',
         54.4239,
         37.0294,
         'Родовое имение, где прошло детство писателя',
@@ -5480,7 +5528,7 @@ VALUES
         )
     ),
     (
-        'Берлин',
+        'Берли н',
         52.5200,
         13.4050,
         'Город, где Толстой жил в эмиграции (1921-1923)',
@@ -5746,99 +5794,116 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Детство Никиты'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Никольское'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Хождение по мукам'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Начало работы над "Хождением по мукам"'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Пётр Первый'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Работа над "Петром Первым"'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Аэлита'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Берлин'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Иван Грозный'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Военные публикации'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Детство Никиты'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Никольское '
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Хождение по мукам'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Начало работы над "Хождением по мукам"'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Пётр Первый'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Работа над "Петром Первым"'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Аэлита'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Берли н'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Иван Грозный'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Военные публикации'
+        )
+    );
+
 INSERT INTO
     poet (name, bio, time_birth, time_death)
 VALUES
@@ -6694,132 +6759,134 @@ VALUES
         )
     );
 
--- INSERT INTO
---     work_event (work_id, event_id)
--- VALUES
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Письмо учёному соседу'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Литературный дебют: "Письмо учёному соседу"'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Остров Сахалин'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Поездка на Сахалин'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Чайка'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Мелихово'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Дядя Ваня'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Мелихово'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Палата №6'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Мелихово'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Вишнёвый сад'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Ялта'
---         )
---     ),
---     (
---         (
---             SELECT
---                 id
---             FROM
---                 work
---             WHERE
---                 name = 'Три сестры'
---         ),
---         (
---             SELECT
---                 id
---             FROM
---                 event
---             WHERE
---                 name = 'Ялта'
---         )
---     );
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Остров Сахалин'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Поездка на Сахалин'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Чайка'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Мелихово'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Дядя Ваня'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Мелихово'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Палата №6'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Мелихово'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Вишнёвый сад'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Переезд в Ялту'
+        )
+    );
+
+INSERT INTO
+    work_event (work_id, event_id)
+VALUES
+    (
+        (
+            SELECT
+                id
+            FROM
+                work
+            WHERE
+                name = 'Три сестры'
+        ),
+        (
+            SELECT
+                id
+            FROM
+                event
+            WHERE
+                name = 'Переезд в Ялту'
+        )
+    );

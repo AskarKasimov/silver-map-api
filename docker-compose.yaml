@@ -43,7 +43,7 @@ services:
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:5432/${PG_DB}
-      - APP_MOD=production
+      - APP_MOD=dev
     ports:
       - "8000:8000"
     depends_on:

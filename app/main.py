@@ -1,9 +1,9 @@
 import os
-from fastapi import FastAPI, HTTPException, status
+from fastapi import Query, HTTPException, status, FastAPI
 from contextlib import asynccontextmanager
 from database import DatabaseData
 from models import *
-from typing import List
+from typing import List, Optional
 
 
 @asynccontextmanager
@@ -38,10 +38,10 @@ app = FastAPI(
 )
 async def get_all_poets():
     poets = await DatabaseData().get_all_poets()
-    if len(poets) == 0:
+    if not poets:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="No events found"
+            detail="No poets found"
         )
     return poets
 
@@ -49,20 +49,31 @@ async def get_all_poets():
 @app.get(
     "/events",
     tags=["events"],
-    summary="Все события",
+    summary="Все события или события по poet_id",
     responses={
-        200: {"description": "Список", "model": List[Event]},
-        404: {"description": "База пуста", "model": Error},
+        200: {"description": "Список событий", "model": List[Event]},
+        404: {"description": "События не найдены", "model": Error},
         500: {"description": "Ошибка сервера", "model": Error}
     }
 )
-async def get_all_events():
-    events = await DatabaseData().get_all_events()
-    if len(events) == 0:
+async def get_events(
+    poet_id: Optional[int] = Query(
+        None,
+        description="Фильтр по ID поэта",
+        example=1
+    )
+):
+    if poet_id is not None:
+        events = await DatabaseData().get_events_by_poet_id(poet_id)
+    else:
+        events = await DatabaseData().get_all_events()
+
+    if not events:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No events found"
         )
+
     return events
 
 if __name__ == "__main__":

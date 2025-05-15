@@ -22,9 +22,6 @@ class DatabaseData:
         if self._conn and not self._conn.is_closed():
             await self._conn.close()
 
-    async def get_all_events(self):
-        return await self._conn.fetch("SELECT * FROM event;")
-
     async def get_all_poets(self):
         return await self._conn.fetch("SELECT * FROM poet;")
 
