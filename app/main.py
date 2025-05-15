@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     await DatabaseData().close()
 
 
-is_prod = os.environ.get("APP_MODE", "production") == "production"
+is_prod = os.environ.get("APP_MODE") == "production"
 
 app = FastAPI(
     title="Silvermap API",
@@ -27,18 +27,36 @@ app = FastAPI(
 
 
 @app.get(
+    "/poets",
+    tags=["poets"],
+    summary="Все поэты",
+    responses={
+        200: {"description": "Список", "model": List[Poet]},
+        404: {"description": "База пуста", "model": Error},
+        500: {"description": "Ошибка сервера", "model": Error}
+    }
+)
+async def get_all_poets():
+    poets = await DatabaseData().get_all_poets()
+    if len(poets) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No events found"
+        )
+    return poets
+
+
+@app.get(
     "/events",
-    response_model=List[Event],
     tags=["events"],
     summary="Все события",
     responses={
-        200: {"description": "Список событий", "model": List[Event]},
-        404: {"description": "События не найдены", "model": Error},
+        200: {"description": "Список", "model": List[Event]},
+        404: {"description": "База пуста", "model": Error},
         500: {"description": "Ошибка сервера", "model": Error}
     }
 )
 async def get_all_events():
-    # Получение всех событий из базы данных.
     events = await DatabaseData().get_all_events()
     if len(events) == 0:
         raise HTTPException(
@@ -49,4 +67,4 @@ async def get_all_events():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=3000)
+    uvicorn.run(app, host="0.0.0.0", port=3001)

@@ -23,4 +23,10 @@ class DatabaseData:
             await self._conn.close()
 
     async def get_all_events(self):
-        return await self._conn.fetch("SELECT id, name FROM event;")
+        return await self._conn.fetch("SELECT * FROM event;")
+
+    async def get_all_poets(self):
+        return await self._conn.fetch("SELECT * FROM poet;")
+
+    async def get_events_by_poet_id(self, poet_id: int):
+        return await self._conn.fetch("SELECT * FROM event WHERE poet_id = $1;", poet_id)
