@@ -29,8 +29,7 @@ app = FastAPI(
 if is_prod:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["https://silvermap.askar.tatar"],
-        allow_origins=["http://silvermap.askar.tatar"],
+        allow_origins=["https://silvermap.askar.tatar", "http://silvermap.askar.tatar"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
