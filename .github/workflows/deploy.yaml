@@ -49,7 +49,7 @@ jobs:
         run: |
           export KUBECONFIG=$HOME/.kube/config
           kubectl set image deployment/api \
-            frontend=ghcr.io/askarkasimov/silver-map-api:${{ github.sha }} \
+            api=ghcr.io/askarkasimov/silver-map-api:${{ github.sha }} \
             -n silver
 
           kubectl rollout status deployment/api -n silver
