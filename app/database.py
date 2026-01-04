@@ -1,9 +1,12 @@
 import os
 import asyncpg
 
+DB_USER = os.environ["POSTGRES_USER"]
+DB_PASSWORD = os.environ["POSTGRES_PASSWORD"]
+DB_NAME = os.environ["POSTGRES_DB"]
+DB_HOST = os.environ["POSTGRES_HOST"]
 
-DB_URL = os.getenv("DATABASE_URL")
-
+DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
 class DatabaseData:
     _instance = None
