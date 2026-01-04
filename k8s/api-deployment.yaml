@@ -35,6 +35,9 @@ spec:
                   name: postgres-secret
                   key: POSTGRES_DB
             - name: POSTGRES_HOST
-              value: "postgres.silver.svc.cluster.local"
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_HOST
             - name: APP_MODE
               value: production

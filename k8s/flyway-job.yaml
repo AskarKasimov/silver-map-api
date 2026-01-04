@@ -10,22 +10,12 @@ spec:
       containers:
         - name: flyway
           image: flyway/flyway:11.8.1
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: POSTGRES_USER
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: POSTGRES_PASSWORD
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: POSTGRES_DB
+          command: ["sh", "-c"]
+          args:
+            - flyway -url="jdbc:postgresql://$POSTGRES_HOST:5432/$POSTGRES_DB?user=$POSTGRES_USER&password=$POSTGRES_PASSWORD" migrate
+          envFrom:
+            - secretRef:
+                name: postgres-secret
           volumeMounts:
             - name: db-init-scripts
               mountPath: /flyway/sql
